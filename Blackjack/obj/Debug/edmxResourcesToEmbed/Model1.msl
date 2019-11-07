@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlackjackModelStoreContainer" CdmEntityContainer="BlackjackEntities">
+    <EntitySetMapping Name="Sessies">
+      <EntityTypeMapping TypeName="BlackjackModel.Sessy">
+        <MappingFragment StoreEntitySet="Sessies">
+          <ScalarProperty Name="SessieID" ColumnName="SessieID" />
+          <ScalarProperty Name="SpelID" ColumnName="SpelID" />
+          <ScalarProperty Name="SpelerID" ColumnName="SpelerID" />
+          <ScalarProperty Name="Staat" ColumnName="Staat" />
+          <ScalarProperty Name="Actief" ColumnName="Actief" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spelers_DB">
+      <EntityTypeMapping TypeName="BlackjackModel.Spelers_DB">
+        <MappingFragment StoreEntitySet="Spelers_DB">
+          <ScalarProperty Name="SpelerID" ColumnName="SpelerID" />
+          <ScalarProperty Name="SpelerNaam" ColumnName="SpelerNaam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spellens">
+      <EntityTypeMapping TypeName="BlackjackModel.Spellen">
+        <MappingFragment StoreEntitySet="Spellen">
+          <ScalarProperty Name="SpelID" ColumnName="SpelID" />
+          <ScalarProperty Name="SpelNaam" ColumnName="SpelNaam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uitslagens">
+      <EntityTypeMapping TypeName="BlackjackModel.Uitslagen">
+        <MappingFragment StoreEntitySet="Uitslagen">
+          <ScalarProperty Name="SpelerID" ColumnName="SpelerID" />
+          <ScalarProperty Name="SpelID" ColumnName="SpelID" />
+          <ScalarProperty Name="UitslagID" ColumnName="UitslagID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

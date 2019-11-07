@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BlackjackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Sessies">
+    <Key>
+      <PropertyRef Name="SessieID" />
+    </Key>
+    <Property Name="SessieID" Type="int" Nullable="false" />
+    <Property Name="SpelID" Type="int" Nullable="false" />
+    <Property Name="SpelerID" Type="int" Nullable="false" />
+    <Property Name="Staat" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Actief" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Spelers_DB">
+    <Key>
+      <PropertyRef Name="SpelerID" />
+    </Key>
+    <Property Name="SpelerID" Type="int" Nullable="false" />
+    <Property Name="SpelerNaam" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Spellen">
+    <Key>
+      <PropertyRef Name="SpelID" />
+    </Key>
+    <Property Name="SpelID" Type="int" Nullable="false" />
+    <Property Name="SpelNaam" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uitslagen">
+    <Key>
+      <PropertyRef Name="UitslagID" />
+    </Key>
+    <Property Name="SpelerID" Type="int" Nullable="false" />
+    <Property Name="SpelID" Type="int" Nullable="false" />
+    <Property Name="UitslagID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Sessies_Spelers">
+    <End Role="Spelers_DB" Type="Self.Spelers_DB" Multiplicity="1" />
+    <End Role="Sessies" Type="Self.Sessies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spelers_DB">
+        <PropertyRef Name="SpelerID" />
+      </Principal>
+      <Dependent Role="Sessies">
+        <PropertyRef Name="SpelerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sessies_Spellen">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="1" />
+    <End Role="Sessies" Type="Self.Sessies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="SpelID" />
+      </Principal>
+      <Dependent Role="Sessies">
+        <PropertyRef Name="SpelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uitslagen_Spelers">
+    <End Role="Spelers_DB" Type="Self.Spelers_DB" Multiplicity="1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spelers_DB">
+        <PropertyRef Name="SpelerID" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="SpelerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uitslagen_Spellen">
+    <End Role="Spellen" Type="Self.Spellen" Multiplicity="1" />
+    <End Role="Uitslagen" Type="Self.Uitslagen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spellen">
+        <PropertyRef Name="SpelID" />
+      </Principal>
+      <Dependent Role="Uitslagen">
+        <PropertyRef Name="SpelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BlackjackModelStoreContainer">
+    <EntitySet Name="Sessies" EntityType="Self.Sessies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Spelers_DB" EntityType="Self.Spelers_DB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Spellen" EntityType="Self.Spellen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uitslagen" EntityType="Self.Uitslagen" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sessies_Spelers" Association="Self.FK_Sessies_Spelers">
+      <End Role="Spelers_DB" EntitySet="Spelers_DB" />
+      <End Role="Sessies" EntitySet="Sessies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sessies_Spellen" Association="Self.FK_Sessies_Spellen">
+      <End Role="Spellen" EntitySet="Spellen" />
+      <End Role="Sessies" EntitySet="Sessies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uitslagen_Spelers" Association="Self.FK_Uitslagen_Spelers">
+      <End Role="Spelers_DB" EntitySet="Spelers_DB" />
+      <End Role="Uitslagen" EntitySet="Uitslagen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uitslagen_Spellen" Association="Self.FK_Uitslagen_Spellen">
+      <End Role="Spellen" EntitySet="Spellen" />
+      <End Role="Uitslagen" EntitySet="Uitslagen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
